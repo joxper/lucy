@@ -1,0 +1,8 @@
+.env
+/vendor
+Homestead.json
+Homestead.yaml
+/resources/docs
+/storage/installed
+/public/bower_components
+/public/storage/avatars/*

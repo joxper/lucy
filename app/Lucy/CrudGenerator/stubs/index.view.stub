@@ -1,0 +1,29 @@
+@extends('layouts.list')
+
+@section('title', '{{Module}}')
+
+@section('page-header', '<div class="page-title"><h1>'.trans('modules.{{Module}}').'<small>'.trans('lucy.word.list').'</small> </h1></div>')
+
+@section('breadcrumb')
+    <ul class="breadcrumb page-breadcrumb">
+        <li><a href="{!! action('DashboardController@index') !!}"> {{ trans('lucy.app.home') }}</a><i class="fa fa-circle"></i></li>
+        <li><span class="active">{{ trans('modules.{{Module}}') }}</span></li>        
+    </ul>
+@endsection
+
+@section('table-name', '{{Module}} List')
+
+@section('add-link', action('Modules\{{Controller}}Controller@create'))
+
+@section('table-id', '{{module}}-table')
+
+@section('table-th')
+    {{Module Column}}
+@endsection
+
+@section('ajax-datatables', action('Modules\{{Controller}}Controller@datatables'))
+
+@section('datatables-columns')
+    {{Module Datatables}}
+    {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
+@endsection

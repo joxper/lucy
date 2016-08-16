@@ -1,0 +1,25 @@
+<?php
+
+namespace DummyNamespace;
+
+use App\Lucy\Model;{{softDeletes}}
+
+class DummyClass extends Model
+{{{useSoftDeletes}}
+    /**
+     * {@inheritDoc}
+     */
+    protected $table = '{{table}}';
+
+    /**
+     * {@inheritDoc}
+     */
+    protected $fillable = [
+        {{fillable}}
+    ];
+
+    /**
+     * {@inheritDoc}
+     */
+    protected $primaryKey = '{{pk}}';{{datesProperty}}{{relationship}}{{datatables}}
+}

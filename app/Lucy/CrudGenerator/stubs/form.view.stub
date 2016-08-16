@@ -1,0 +1,22 @@
+@extends('layouts.form')
+
+@section('title', $title.' - {{Module}}'){{Module Form Header}}
+
+@section('page-header', '<div class="page-title"><h1>'.trans('modules.{{Module}}').'<small>'.$title.'</small> </h1></div>')
+
+@section('breadcrumb')
+    <ul class="breadcrumb page-breadcrumb">
+        <li><a href="{!! action('DashboardController@index') !!}"> {{ trans('lucy.app.home') }}</a><i class="fa fa-circle"></i></li>
+        <li><a href="{!! action('Modules\{{Controller}}Controller@index') !!}">{{ trans('modules.{{Module}}') }}</a></li>
+        <li><span class="active">{{ $title }}</span></li>        
+    </ul>
+@endsection
+
+@section('form')
+    {{Module Form}}
+@endsection
+
+@section('scripts')
+    <script src="{!! url('vendor/jsvalidation/js/jsvalidation.js')!!}"></script>
+    {!! JsValidator::formRequest('App\Http\Requests\Modules\{{Request}}Request') !!}{{Module Form Script}}
+@endsection
