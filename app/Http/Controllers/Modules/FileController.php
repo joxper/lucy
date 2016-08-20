@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Modules;
 
 use App\Lucy\Controller;
-use App\Models\Modules\ClientsAdmin as Model;
-use App\Http\Requests\Modules\ClientsAdminRequest as Request;
+use App\Models\Modules\File as Model;
+use App\Http\Requests\Modules\FileRequest as Request;
 
-class ClientsAdminController extends Controller
+class FileController extends Controller
 {
     /**
      * {@inheritDoc}
      */
     protected $datatablesPermissions = [
-        'edit' => 'clientsadmins.edit',
-        'delete' => 'clientsadmins.delete',
+        'edit' => 'files.edit',
+        'delete' => 'files.delete',
     ];
 
     /**
@@ -31,7 +31,7 @@ class ClientsAdminController extends Controller
      */
     public function index()
     {
-        return view('modules.clients_admins.index', ['createPermission' => 'clientsadmins.create']);
+        return view('modules.files.index', ['createPermission' => 'files.create']);
     }
 
     /**
@@ -42,15 +42,19 @@ class ClientsAdminController extends Controller
     public function create()
     {
         return $this->createEdit([
-            'user_id' => null,
             'client_id' => null,
+            'project_id' => null,
+            'asset_id' => null,
+            'ticketreply_id' => null,
+            'name' => null,
+            'file' => null,
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Modules\ClientsAdminRequest  $request
+     * @param  \App\Http\Requests\Modules\FileRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -58,7 +62,7 @@ class ClientsAdminController extends Controller
         return $this->transaction(function () use ($request) {
             $data = $this->model->create($request->all());
 
-            lucy_log('Created a new ClientsAdmin where ID: '.$data->id.'.');
+            lucy_log('Created a new File where ID: '.$data->id.'.');
         });
     }
 
@@ -70,7 +74,7 @@ class ClientsAdminController extends Controller
      */
     public function show($id)
     {
-        return view('modules.clients_admins.view', $this->prepareShow($id));
+        return view('modules.files.view', $this->prepareShow($id));
     }
 
     /**
@@ -87,7 +91,7 @@ class ClientsAdminController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Modules\ClientsAdminRequest  $request
+     * @param  \App\Http\Requests\Modules\FileRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -97,7 +101,7 @@ class ClientsAdminController extends Controller
             $data = $this->model->findOrFail($id);
             $data->update($request->all());
 
-            lucy_log('Updated a ClientsAdmin where ID: '.$data->id.'.');
+            lucy_log('Updated a File where ID: '.$data->id.'.');
         });
     }
 
@@ -109,15 +113,13 @@ class ClientsAdminController extends Controller
      */
     public function destroy($id)
     {
-        $this->transaction(function () use ($id) {
+        return $this->transaction(function () use ($id) {
             $data = $this->model->findOrFail($id);
 
-            lucy_log('Deleted a Client where ID: '.$data->id.'.');
+            lucy_log('Deleted a File where ID: '.$data->id.'.');
 
             $data->delete();
         });
-
-        return back_with_message(trans('lucy.message.success-delete'), 'success');
     }
 
     /**
@@ -125,12 +127,6 @@ class ClientsAdminController extends Controller
      */
     protected function createEdit($dataToBind, $id = 0)
     {
-        return view('modules.clients_admins.form', $this->prepareCreateEdit($dataToBind, $id));
-    }
-
-    public function datatables()
-    {
-        return Controller::datatables()
-            ->make(true);
+        return view('modules.files.form', $this->prepareCreateEdit($dataToBind, $id));
     }
 }

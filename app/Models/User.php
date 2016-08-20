@@ -11,7 +11,7 @@ class User extends Model implements LucyModelInterface
      * {@inheritDoc}
      */
     protected $fillable = [
-        'email', 'username', 'password', 'avatar', 'skin', 'permissions', 'first_name', 'last_name', 'full_name', 'is_banned',
+        'email', 'username', 'password', 'avatar', 'skin', 'permissions', 'first_name', 'last_name', 'full_name', 'is_banned', 'client_id',
     ];
 
     /**

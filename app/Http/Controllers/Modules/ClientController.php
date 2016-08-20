@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Modules;
+use Sentinel;
 use DB;
 use App\Lucy\Controller;
 use App\Models\Modules\Client as Model;
@@ -92,23 +93,36 @@ class ClientController extends Controller
         $credentials =      DB::table('credentials')
                                 ->where('client_id', $id)
                                 ->get();
-        $users =            DB::table('users')
+        $users =            Sentinel::findRoleById(2)
+                                ->users()
                                 ->where('client_id', $id)
-                                ->get();    
-        $admins =           DB::table('users')
-                                ->where('client_id', $id)
+                                ->with('roles')
                                 ->get();
-        $assignedadmins =   DB::table('clients_admins')
-                                ->where('client_id', $id)
+        $admins =           Sentinel::findRoleById(1)
+                                ->users()
+                                ->with('roles')
                                 ->get();
+
+        $assignedAdmins =   AdminModel::where('client_id', $id)
+                                ->with('user')
+                                ->get();
+
         $categories =       DB::table('asset_categories')
-                                ->where('client_id', $id)
                                 ->get();
-        $files =            DB::table('files')
-                                ->where('client_id', $id)
-                                ->get();                                                                                 
-        return view('flight.index', ['flights' => $flights]);
-        return view('modules.clients.view', $this->prepareShow($id));
+
+        return view('modules.clients.view', [
+                                        'client'            => $client,
+                                        'assets'            => $assets,
+                                        'licenses'          => $licenses,
+                                        'projects'          => $projects,
+                                        'issues'            => $issues,
+                                        'tickets'           => $tickets,
+                                        'credentials'       => $credentials,
+                                        'users'             => $users,
+                                        'admins'            => $admins,
+                                        'assignedAdmins'    => $assignedAdmins,
+                                        'categories'        => $categories
+        ]);
     }
 
     /**

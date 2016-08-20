@@ -2,7 +2,7 @@
 
 @section('title', trans('lucy.word.view').' - Clients')
 
-@section('page-header', '<div class="page-title"><h1>'.$data['name'].'<small>'.trans('lucy.word.view').'</small> </h1></div>')
+@section('page-header', '<div class="page-title"><h1>'.$client['data']['name'].'<small>'.trans('lucy.word.view').'</small> </h1></div>')
 
 @section('header')
 {!! Html::style('bower_components/metronic/assets/global/plugins/morris/morris.css') !!}
@@ -77,5 +77,5 @@
     {!! Html::script('bower_components/metronic/assets/global/plugins/counterup/jquery.counterup.min.js') !!}
     {!! Html::script('bower_components/metronic/assets/global/plugins/morris/morris.min.js') !!}
     {!! Html::script('bower_components/metronic/assets/global/plugins/morris/raphael-min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/pages/scripts/charts-morris.min.js') !!}   
+    {!! Html::script('bower_components/metronic/assets/pages/scripts/charts-morris.js') !!}
 @endsection    

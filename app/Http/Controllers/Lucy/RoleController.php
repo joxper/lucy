@@ -193,4 +193,11 @@ class RoleController extends Controller
 
         return $data;
     }
+    public function datatables()
+    {
+        return Controller::datatables()
+            ->make(true);
+    }
+
+
 }

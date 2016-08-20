@@ -1,14 +1,11 @@
 @extends('layouts.list')
 
-@section('title', 'Clients')
+@section('title', 'Clientsaaa')
 
 @section('page-header', '<div class="page-title"><h1>'.trans('modules.Clients').'<small>'.trans('lucy.word.list').'</small> </h1></div>')
 
 @section('breadcrumb')
-    <ul class="breadcrumb page-breadcrumb">
-        <li><a href="{!! action('DashboardController@index') !!}"> {{ trans('lucy.app.home') }}</a><i class="fa fa-circle"></i></li>
-        <li><span class="active">{{ trans('modules.Clients') }}</span></li>
-    </ul>
+ asa
 @endsection
 
 @section('table-name', 'Clients List')

@@ -44,7 +44,6 @@
                         </div>
                     </div>
                 </div>
-                @include('flash::message')
                 <table id="@yield('table-id')" class="table table-striped table-bordered table-hover table-checkable order-column" data-tables="true">
                     <thead>
                         <tr>

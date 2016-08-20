@@ -36,3 +36,4 @@ require app_path('Http/Routes/tickets_rules_routes.php');
 require app_path('Http/Routes/comments_routes.php');
 require app_path('Http/Routes/licenses_routes.php');
 require app_path('Http/Routes/lcenses_assets_routes.php');
+require app_path('Http/Routes/files_routes.php');

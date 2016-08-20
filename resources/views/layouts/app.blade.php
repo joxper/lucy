@@ -482,13 +482,18 @@
                 <div class="page-content">
                     <!-- BEGIN PAGE HEAD-->
                     <div class="page-head">
-                    @yield('page-header')
-                    @include('layouts.toolbar')
+                        @yield('page-header')
+                        @include('layouts.toolbar')
+                        <div style="float: right;">
+                        <!-- BEGIN PAGE BREADCRUMB -->
+                        @yield('breadcrumb')
+                        <!-- END PAGE BREADCRUMB -->
+                        </div>
                     </div>
-                    <!-- BEGIN PAGE BREADCRUMB -->  
-                    @yield('breadcrumb')
-                    <!-- END PAGE BREADCRUMB -->                 
                     <!-- END PAGE HEAD-->
+                    <div class="row">
+                        @include('flash::message')
+                    </div>
                     <!-- BEGIN PAGE BASE CONTENT -->
                     <div class="row">
                         @yield('content')

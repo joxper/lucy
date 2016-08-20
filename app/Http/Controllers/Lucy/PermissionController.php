@@ -147,4 +147,11 @@ class PermissionController extends Controller
 
         return view('lucy.permissions.form', $this->prepareCreateEdit($dataToBind, $id));
     }
+
+    public function datatables()
+    {
+        return Controller::datatables()
+            ->make(true);
+    }
+
 }

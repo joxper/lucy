@@ -64,8 +64,10 @@
         <div class="col-md-4">
             {!! Form::group('text', 'last_name', trans('lucy.form.last_name'), $data['last_name']) !!}   
         </div>
-    </div>   
-    {!! Form::group('select', 'role', trans('lucy.form.role'), $data['role'], ['options' => $data['dropdown']]) !!}
+    </div>
+            {!! Form::group('text', 'client_id', trans('lucy.form.user'), $data['client_id']) !!}
+
+            {!! Form::group('select', 'role', trans('lucy.form.role'), $data['role'], ['options' => $data['dropdown']]) !!}
     {!! Form::checkRadio('checkbox', 'is_banned', trans('lucy.form.ban').'?', true, ['class' => 'switch', 'checked' => $data['is_banned'], 'data-on-text' => trans('lucy.word.yes'), 'data-off-text' => trans('lucy.word.no')]) !!}
 @endsection
 
