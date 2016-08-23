@@ -17,8 +17,6 @@ require app_path('Http/Routes/hosts_history_routes.php');
 require app_path('Http/Routes/hosts_admins_routes.php');
 require app_path('Http/Routes/labels_routes.php');
 require app_path('Http/Routes/license_categories_routes.php');
-require app_path('Http/Routes/manufacturers_routes.php');
-require app_path('Http/Routes/models_routes.php');
 require app_path('Http/Routes/notification_templates_routes.php');
 require app_path('Http/Routes/projects_routes.php');
 require app_path('Http/Routes/projects_admins_routes.php');

@@ -28,9 +28,22 @@ class Client extends Model
      */
 
 
-    public function admins()
+    public function users()
     {
-        return $this->hasMany('App\Models\Modules\ClientsAdmin');
-    }        
+        return $this->belongsToMany('App\Models\User');
+    }
+
+    /**
+     * Get the assets for the client.
+     */
+    public function assets()
+    {
+        return $this->hasMany('App\Models\Modules\Asset');
+    }
+
+    public function datatables()
+    {
+        return static::select('*');
+    }
 }
 

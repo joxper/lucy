@@ -37,19 +37,19 @@
                         <div class="col-md-6">
                             <div class="btn-group">
                                 @access($createPermission)
-                                    <a class="btn sbold green" href="@yield('add-link')" title="{{ trans('lucy.word.create') }}"><i class="fa fa-plus fa-fw"></i> {{ trans('lucy.word.create') }}
-                                    </a>
-                                @endaccess                                                  
+                                <a class="btn sbold green" href="@yield('add-link')" title="{{ trans('lucy.word.create') }}"><i class="fa fa-plus fa-fw"></i> {{ trans('lucy.word.create') }}
+                                </a>
+                                @endaccess
                             </div>
                         </div>
                     </div>
                 </div>
                 <table id="@yield('table-id')" class="table table-striped table-bordered table-hover table-checkable order-column" data-tables="true">
                     <thead>
-                        <tr>
-                            @yield('table-th')
-                            <th width="18%">&nbsp;</th>
-                        </tr>
+                    <tr>
+                        @yield('table-th')
+                        <th width="18%">&nbsp;</th>
+                    </tr>
                     </thead>
                 </table>
             </div>
@@ -62,12 +62,12 @@
 
 @section('scripts')
 
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        {!! Html::script('bower_components/metronic/assets/global/scripts/datatable.js') !!}
-        {!! Html::script('bower_components/metronic/assets/global/plugins/datatables/datatables.min.js') !!}
-        {!! Html::script('bower_components/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}
-        {!! Html::script('bower_components/metronic/assets/pages/scripts/table-datatables-managed.min.js') !!}
-        <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    {!! Html::script('bower_components/metronic/assets/global/scripts/datatable.js') !!}
+    {!! Html::script('bower_components/metronic/assets/global/plugins/datatables/datatables.min.js') !!}
+    {!! Html::script('bower_components/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}
+    {!! Html::script('bower_components/metronic/assets/pages/scripts/table-datatables-managed.min.js') !!}
+    <!-- END PAGE LEVEL PLUGINS -->
 
 
     <script>
@@ -106,8 +106,8 @@
                 //},
 
                 // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
-                // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js). 
-                // So when dropdowns used the scrollable div should be removed. 
+                // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js).
+                // So when dropdowns used the scrollable div should be removed.
                 //"dom": "<'row'<'col-md-6 col-sm-12'l><'col-md-6 col-sm-12'f>r>t<'row'<'col-md-5 col-sm-12'i><'col-md-7 col-sm-12'p>>",
 
                 "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
@@ -123,7 +123,7 @@
                     [5, 15, 20, "All"] // change per page values here
                 ],
                 // set the initial value
-                "pageLength": 5,            
+                "pageLength": 5,
                 "pagingType": "bootstrap_extended",
                 "columnDefs": [{  // set default column settings
                     'orderable': false,
@@ -147,7 +147,6 @@
     </script>
     @include('layouts.delete-modal-datatables')
 @endsection
- 
 
 
 

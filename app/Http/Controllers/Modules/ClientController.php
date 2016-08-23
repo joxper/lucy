@@ -5,7 +5,7 @@ use Sentinel;
 use DB;
 use App\Lucy\Controller;
 use App\Models\Modules\Client as Model;
-use App\Models\Modules\ClientsAdmin as AdminModel;
+use App\Http\Queries\Queries;
 use App\Http\Requests\Modules\ClientRequest as Request;
 
 class ClientController extends Controller
@@ -74,38 +74,23 @@ class ClientController extends Controller
     public function show($id)
     {
         $client =           $this->prepareShow($id);
-        $assets =           DB::table('assets')
-                                ->where('client_id', $id)
-                                ->get();
-        $licenses =         DB::table('licenses')
-                                ->where('client_id', $id)
-                                ->get();
-        $projects =         DB::table('projects')
-                                ->where('client_id', $id)
-                                ->get();
-        $issues =           DB::table('issues')
-                                ->where('client_id', $id)
-                                ->get();
-        $tickets =          DB::table('tickets')
-                                ->where('client_id', $id)
-                                ->orderBy('id', 'desc')                                
-                                ->get();
-        $credentials =      DB::table('credentials')
-                                ->where('client_id', $id)
-                                ->get();
-        $users =            Sentinel::findRoleById(2)
-                                ->users()
-                                ->where('client_id', $id)
-                                ->with('roles')
-                                ->get();
-        $admins =           Sentinel::findRoleById(1)
-                                ->users()
-                                ->with('roles')
-                                ->get();
+        $assets =           (new Queries)->get('assets','client_id', $id);
+        $licenses =         (new Queries)->get('licenses','client_id', $id);
+        $projects =         (new Queries)->get('projects','client_id', $id);
+        $issues =           (new Queries)->get('issues','client_id', $id);
+        $tickets =          (new Queries)->get('tickets','client_id', $id);
+        $credentials =      (new Queries)->get('credentials','client_id', $id);
 
-        $assignedAdmins =   AdminModel::where('client_id', $id)
-                                ->with('user')
-                                ->get();
+        $assigned =         Model::findOrFail($id)->users();
+
+        $assignedList  =    $assigned
+                                ->lists('user_id');
+        $users =            (new Queries)->getUsers('2',$assignedList, true);
+        $usersList =        ['' => ''] + $users->lists('first_name','id')->all();
+        $admins =           ['' => ''] + (new Queries)->getUsers('1',$assignedList, false)
+                                                      ->lists('first_name','id')->all();
+
+        $assignedAdmins =   (new Queries)->getUsers('1',$assignedList, true);
 
         $categories =       DB::table('asset_categories')
                                 ->get();
@@ -121,7 +106,10 @@ class ClientController extends Controller
                                         'users'             => $users,
                                         'admins'            => $admins,
                                         'assignedAdmins'    => $assignedAdmins,
-                                        'categories'        => $categories
+                                        'categories'        => $categories,
+                                        'assignedList'      => $assignedList,
+                                        'usersList'         => $usersList,
+                                        'createPermission'  => 'assets.create'
         ]);
     }
 
@@ -187,23 +175,17 @@ class ClientController extends Controller
     {
        return Controller::datatables()
                 ->addColumn('licenses', function ($data) {
-                    $count = DB::table('licenses')
-                                        ->where('client_id', $data->id)
-                                        ->count();
+                    $count = (new Queries)->count('licenses','client_id', $data->id);
                     $badge = '<span class="badge badge-danger">'.$count.'</span>';                    
                     return $badge;
                 })
                 ->addColumn('assets', function ($data) {
-                    $count = DB::table('assets')
-                                        ->where('client_id', $data->id)
-                                        ->count();
+                    $count = (new Queries)->count('assets','client_id', $data->id);
                     $badge = '<span class="badge badge-success">'.$count.'</span>';                    
                     return $badge;
                 })
                 ->addColumn('projects', function ($data) {
-                    $count = DB::table('projects')
-                                        ->where('client_id', $data->id)
-                                        ->count();
+                    $count = (new Queries)->count('projects','client_id', $data->id);
                     $badge = '<span class="badge purple">'.$count.'</span>';                    
                     return $badge;
                 })                                
@@ -215,20 +197,38 @@ class ClientController extends Controller
      * Add admin tu the client.
      *
      * @param  \App\Http\Requests\Modules\ClientRequest  $request
-     * @param  int  $id
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function assignStaff(Request $request)
+
+    public function attachUser(Request $request, $id)
     {
-        return $this->transaction(function () use ($request) {
-            $client_id = $this->model->find(1)->id;
+        $this->transaction(function () use ($request, $id) {
+            $client = $this->model->find($id);
 
-            $data = $request->only('admin_id') + compact('client_id');
+            $user = $request->only('user_id');
+            $client->users()->sync([$user['user_id']],false);
 
-            AdminModel::create($data);
-
-            lucy_log(trans('lucy.log.create-role', ['role' => $data['admin_id']]));
+            lucy_log(trans('lucy.log.add-role', ['role' => $user['user_id']]));
         });
-    }  
 
+        return back_with_message(trans('lucy.message.success-add'), 'success');
+    }
+
+    public function detachUser($client, $id)
+    {
+        $this->transaction(function () use ($client, $id) {
+            $client = $this->model->find($client);
+            $client->users()->detach($id);
+
+            lucy_log('Detach user where '.$id.' from Client where ID: '.$client.'.');
+        });
+
+        return back_with_message(trans('lucy.message.success-delete'), 'success');
+    }
+
+    public function datatablesAssets()
+    {
+        return datatables($this->model->datatables())->make(true);
+    }
 }

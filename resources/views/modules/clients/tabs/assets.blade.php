@@ -1,8 +1,26 @@
-    <div class="tab-pane" id="assets">
-        <p> Howdy, I'm in Section 2. </p>
-        <p> Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-            consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation. </p>
-        <p>
-            <a class="btn green" href="ui_tabs_accordions_navs.html#tab_5_2" target="_blank"> Activate this tab via URL </a>
-        </p>
-    </div>
+<div class="tab-pane" id="assets">
+        @section('table-name', 'Assets List')
+
+        @section('add-link', action('Modules\AssetController@create'))
+
+        @section('table-id', 'assets-table')
+
+        @section('table-th')
+            <th class="center-align">ID</th>
+            <th class="center-align">Name</th>
+        @endsection
+
+        @section('ajax-datatables', action('Modules\ClientController@datatables'))
+
+        @section('datatables-columns')
+            {data: 'id', name: 'id'},
+            {data: 'name', name: 'name'},
+        @endsection
+
+        @include('layouts.listTable')
+</div>
+
+
+
+
+

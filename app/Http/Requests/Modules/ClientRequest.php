@@ -24,9 +24,7 @@ class ClientRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required',
-            'asset_tag_prefix' => 'required',
-            'license_tag_prefix' => 'required',
+ 
         ];
     }
 }

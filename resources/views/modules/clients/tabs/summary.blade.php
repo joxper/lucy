@@ -77,6 +77,13 @@
 						<div class="caption">
 							<i class=" icon-clock font-green"></i>
 							<span class="caption-subject font-green bold uppercase">Assigned Staff</span>
+							@access('clientsadmins.create')
+							@if (count($admins) > 1)
+								<button id="attach_btn" class="btn btn-circle btn-icon-only blue" data-id="{{$client['data']['id']}}">
+									<i class="fa fa-plus"></i>
+								</button>
+							@endif
+							@endaccess
 						</div>
 					</div>
 					<div class="portlet-body">
@@ -85,23 +92,25 @@
 						@foreach($assignedAdmins as $admin)
 								<div class="mt-action">
 									<div class="mt-action-img">
-										@if ($admin['user']['avatar'] && file_exists(avatar_path($admin['user']['avatar'])))
-											<img src="{!! link_to_avatar($admin['user']['avatar']) !!}" width="45">
+										@if ($admin->avatar && file_exists(avatar_path($admin->avatar)))
+											<img src="{!! link_to_avatar($admin->avatar) !!}" width="45">
 										@endif
 									</div>
 									<div class="mt-action-body">
 										<div class="mt-action-row">
 											<div class="mt-action-info ">
-												<div class="mt-action-details ">
-													<span class="mt-action-author">{!! $admin['user']['username'] !!}</span>
-													<p class="mt-action-desc">{!! $admin['user']['position'] !!}</p>
+												<div class="mt-action-icon ">
+												</div>
+												<div class="mt-action-datetime ">
+													<span class="mt-action-author">{!! $admin->first_name !!}</span>
+													<p class="mt-action-desc">{!! $admin->position !!}</p>
 												</div>
 											</div>
                                             @access('clientsadmins.create')
-											<div class="mt-action-buttons ">
-												{{ Form::open(['method' => 'DELETE', 'action' => ['Modules\ClientsAdminController@destroy', $admin['id']]]) }}
-												{{ Form::submit('Delete', ['class' => 'btn purple-sharp']) }}
+											<div class="mt-action-buttons" data-form="detachForm">
+												{{ Form::open(['method' => 'DELETE', 'action' => ['Modules\ClientController@detachUser', $client['data']['id'], $admin['id']], 'id' => 'detach_modal']) }}
 												{{ Form::close() }}
+												<button id="detach_btn" class="btn btn-circle btn-icon-only green"><i class="fa fa-minus"></i></button>
 											</div>
                                             @endaccess
 										</div>
@@ -125,3 +134,5 @@
 			</div>
 		</div>
     </div>
+
+

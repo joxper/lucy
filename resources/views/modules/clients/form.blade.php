@@ -2,7 +2,7 @@
 
 @section('title', $title.' - Clients')
 
-@section('page-header', '<div class="page-title"><h1>'.trans('modules.Clients').'<small>'.$title.'</small> </h1></div>')
+@section('page-header', '<div class="page-title"><h1>'.trans('modules.words.add').'<small>'.$title.'</small> </h1></div>')
 
 @section('breadcrumb')
     <ul class="breadcrumb page-breadcrumb">

@@ -10,7 +10,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('testing', function() {
+    $assigned =         App\Models\Modules\Client::findOrFail(6)->assets()->get();
 
+
+
+    return $assigned;
+
+});
 // Auth...
 Route::group(['prefix' => 'auth', 'namespace' => 'Auth'], function () {
     // Native login / logout...
