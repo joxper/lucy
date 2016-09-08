@@ -1038,9 +1038,9 @@ Datatables processing
 ***/
 .dataTables_wrapper .dataTables_processing {
   width: 200px;
-  display: inline-block;
+  display: block;
   padding: 7px;
-  left: 50%;
+  left: 70%;
   margin-left: -100px;
   margin-top: 10px;
   text-align: center;

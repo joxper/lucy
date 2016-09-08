@@ -46,7 +46,6 @@ class AssetController extends Controller
             'admin_id' => null,
             'client_id' => null,
             'user_id' => null,
-            'model_id' => null,
             'supplier_id' => null,
             'status_id' => null,
             'purchase_date' => null,

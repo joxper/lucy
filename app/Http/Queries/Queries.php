@@ -51,7 +51,7 @@ class Queries
             ->users()
             ->$in('id', $assignedList)
             ->with('roles')
-            ->get();
+            ->select('id', 'email', 'username', 'avatar', 'first_name', 'position');
         return $query;
     }
 }

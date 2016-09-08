@@ -1,8 +1,16 @@
     <div class="tab-pane" id="credentials">
-        <p> Howdy, I'm in Section 3. </p>
-        <p> Duis autem vel eum iriure dolor in hendrerit in vulputate. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum
-            iriure dolor in hendrerit in vulputate velit esse molestie consequat </p>
-        <p>
-            <a class="btn yellow" href="ui_tabs_accordions_navs.html#tab_5_3" target="_blank"> Activate this tab via URL </a>
-        </p>
+        <div class="table-toolbar">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        @access($createPermission)
+                        <a class="btn sbold green" href="@yield('add-link')" title="{{ trans('lucy.word.create') }}"><i class="fa fa-plus fa-fw"></i> {{ trans('lucy.word.create') }}
+                        </a>
+                        @endaccess
+                    </div>
+                </div>
+            </div>
+        </div>
+        {!! $dataTable->table(['style' => 'width: 100%;', 'class' => 'table table-striped table-bordered table-hover table-checkable order-column dataTable no-footer']) !!}
+
     </div>

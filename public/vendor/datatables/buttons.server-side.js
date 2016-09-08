@@ -10,7 +10,7 @@
     };
 
     DataTable.ext.buttons.excel = {
-        className: 'buttons-excel',
+        className: 'buttons-excel tool-action',
 
         text: function (dt) {
             return '<i class="fa fa-file-excel-o"></i> ' + dt.i18n('buttons.excel', 'Excel');
@@ -20,6 +20,18 @@
             var url = _buildUrl(dt, 'excel');
             window.location = url;
         }
+    };
+
+    DataTable.ext.buttons.export = {
+        extend: 'collection',
+
+        className: 'buttons-export',
+
+        text: function (dt) {
+            return '<i class="fa fa-download"></i> ' + dt.i18n('buttons.export', 'Export') + '&nbsp;<span class="caret"/>';
+        },
+
+        buttons: ['csv', 'excel', 'pdf']
     };
 
     DataTable.ext.buttons.csv = {

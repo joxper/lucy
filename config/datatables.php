@@ -12,4 +12,5 @@ return [
     ],
 
     'script_template' => 'datatables::script',
+    'pdf_generator' => 'snappy',
 ];

@@ -2,7 +2,7 @@
 
 @section('title', trans('lucy.word.view').' - Clients')
 
-@section('page-header', '<div class="page-title"><h1>'.$client['data']['name'].'<small>'.trans('lucy.word.view').'</small> </h1></div>')
+@section('page-header', '<div class="page-title"><h1>'.$client['name'].'<small>'.trans('lucy.word.view').'</small> </h1></div>')
 
 @section('header')
 {!! Html::style('bower_components/metronic/assets/global/plugins/morris/morris.css') !!}
@@ -10,6 +10,7 @@
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 {!! Html::style('bower_components/metronic/assets/global/plugins/datatables/datatables.min.css') !!}
 {!! Html::style('bower_components/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!}
+{!! Html::style('bower_components/metronic/assets/layouts/layout4/css/custom.css') !!}
 <!-- END PAGE LEVEL PLUGINS -->
 
 <style>
@@ -33,36 +34,17 @@
     <li class="active">
         <a href="#summary" data-toggle="tab" aria-expanded="true"> Summary </a>
     </li>
+    @foreach($tabs as $tab)
     <li class="">
-        <a href="#assets" data-toggle="tab" aria-expanded="false"> Assets </a>
+        <a href="#{{$tab}}" data-toggle="tab" aria-expanded="false" onclick="{{$tab}}DataTables()"> {{$tab}} </a>
     </li>
-    <li class="">
-        <a href="#licenses" data-toggle="tab" aria-expanded="false"> Licenses </a>
-    </li>
-    <li class="">
-        <a href="#projects" data-toggle="tab" aria-expanded="false"> Projects </a>
-    </li>    
-    <li class="">
-        <a href="#issues" data-toggle="tab" aria-expanded="false"> Issues </a>
-    </li>
-    <li class="">
-        <a href="#tickets" data-toggle="tab" aria-expanded="false"> Tickets </a>
-    </li>
-    <li class="">
-        <a href="#credentials" data-toggle="tab" aria-expanded="false"> Credentials </a>
-    </li>  
-    <li class="">
-        <a href="#users" data-toggle="tab" aria-expanded="false"> Users </a>
-    </li>
-    <li class="">
-        <a href="#files" data-toggle="tab" aria-expanded="false"> Files </a>
-    </li>  
+    @endforeach
 @endsection
 
 @section('actions')
     @access('clientsadmins.create')
-        @if (count($admins) > 1)
-        <button id="attach_btn" class="btn btn-circle btn-icon-only btn-default" data-id="{{$client['data']['id']}}">
+        @if (count($NotAssignedAdmins) > 1)
+        <button id="attach_btn" class="btn btn-circle btn-icon-only btn-default" data-id="{{$client['id']}}">
             <i class="icon-user-follow"></i>
         </button>
         @endif
@@ -76,27 +58,23 @@
 @endsection
 
 @section('tab-content')
-	@include('modules.clients.tabs.summary')
-	@include('modules.clients.tabs.assets')
-	@include('modules.clients.tabs.licenses')
-	@include('modules.clients.tabs.projects')
-	@include('modules.clients.tabs.issues')
-	@include('modules.clients.tabs.tickets')
-    @include('modules.clients.tabs.credentials')
-    @include('modules.clients.tabs.users')
-    @include('modules.clients.tabs.files')
+    @include('modules.clients.tabs.summary')
+    @foreach($tabs as $tab)
+        @php( $blade = 'modules.clients.tabs.'.$tab )
+        @include($blade, ['tab' => $tab])
+    @endforeach
 @endsection
 @section('attachForm')
     {{ Form::open(['method' => 'POST',
                'action' => [
                     'Modules\ClientController@attachUser',
-                    'id' => $client['data']['id']
+                    'id' => $client['id']
                     ],
                'id'     => 'attachForm',
                'style'  => 'display:none;',
                'title'  => trans('modules.clients.attachAdmin')
                ]) }}
-    {!! Form::group('select', 'user_id', 'Staff', 'Staff', ['options' => $admins]) !!}
+    {!! Form::group('select', 'user_id', 'Staff', 'Staff', ['options' => $NotAssignedAdmins]) !!}
 @endsection
 @section('scripts')
     {!! Html::script('bower_components/metronic/assets/global/plugins/counterup/jquery.waypoints.min.js') !!}
@@ -111,72 +89,15 @@
     {!! Html::script('bower_components/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}
     {!! Html::script('bower_components/metronic/assets/pages/scripts/table-datatables-managed.min.js') !!}
     <!-- END PAGE LEVEL PLUGINS -->
+    <script src="/vendor/datatables/buttons.server-side.js"></script>
 
-    <script>
-        $(window).load(function(){
-            $('#@yield('table-id')').DataTable({
-                // Internationalisation. For more info refer to http://datatables.net/manual/i18n
-                processing: true,
-                serverSide: true,
-                ajax: '@yield('ajax-datatables')',
-                columns: [
-                    @yield('datatables-columns')
-                ],
-                "language": {
-                    "aria": {
-                        "sortAscending": ": activate to sort column ascending",
-                        "sortDescending": ": activate to sort column descending"
-                    },
-                    "emptyTable": "No data available in table",
-                    "info": "Showing _START_ to _END_ of _TOTAL_ records",
-                    "infoEmpty": "No records found",
-                    "infoFiltered": "(filtered1 from _MAX_ total records)",
-                    "lengthMenu": "Show _MENU_",
-                    "search": "Search:",
-                    "zeroRecords": "No matching records found",
-                    "paginate": {
-                        "previous":"Prev",
-                        "next": "Next",
-                        "last": "Last",
-                        "first": "First"
-                    }
-                },
-                "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+        {!! $dataTable->scripts() !!}
 
-                "columnDefs": [ {
-                    "targets": 0,
-                    "orderable": false,
-                    "searchable": false
-                }],
-
-                "lengthMenu": [
-                    [5, 15, 20, -1],
-                    [5, 15, 20, "All"] // change per page values here
-                ],
-                // set the initial value
-                "pageLength": 5,
-                "pagingType": "bootstrap_extended",
-                "columnDefs": [{  // set default column settings
-                    'orderable': false,
-                    'targets': [0]
-                }, {
-                    "searchable": false,
-                    "targets": [0]
-                }],
-                "order": [
-                    [1, "asc"]
-                ] // set first column as a default sort by asc
-            });
-        $('button#tables').on('click', function(){
-
-
-        });
-    });
-
-    </script>
     @include('layouts.delete-modal-datatables')
     @include('layouts.detach-modal')
     @include('layouts.attachModal')
-
+    @yield('dataTablesScripts')
 @endsection
+
+
 

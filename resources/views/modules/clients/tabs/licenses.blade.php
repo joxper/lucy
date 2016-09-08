@@ -1,8 +1,26 @@
-    <div class="tab-pane" id="licenses">
-        <p> Howdy, I'm in Section 2. </p>
-        <p> Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie
-            consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation. </p>
-        <p>
-            <a class="btn green" href="ui_tabs_accordions_navs.html#tab_5_2" target="_blank"> Activate this tab via URL </a>
-        </p>
-    </div>
+@extends('layouts.listTable')
+
+    @section('tabName-licenses', 'licenses')
+
+    @section('table-name-licenses', 'Assets List')
+
+    @section('add-link-licenses', action('Modules\LicenseController@create'))
+
+    @section('table-id-licenses', 'licensesDataTables')
+
+    @section('table-th-licenses')
+        <th class="center-align">Id</th>
+        <th class="center-align">Username</th>
+        <th class="center-align">FirstName</th>
+        <th class="center-align">LastName</th>
+    @endsection
+
+    @section('ajax-datatables-licenses', action('Modules\ClientController@usersTableService', ['id' => $client['id']]))
+
+    @section('datatables-columns-licenses')
+        {data: 'id', name: 'id'},
+        {data: 'username', name: 'username'},
+        {data: 'first_name', name: 'first_name'},
+        {data: 'last_name', name: 'last_name'},
+        {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
+    @endsection

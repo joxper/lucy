@@ -10,12 +10,17 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
 Route::get('testing', function() {
-    $assigned =         App\Models\Modules\Client::findOrFail(6)->assets()->get();
+    $assigned =         App\Models\Modules\Client::findOrFail(6);
+
+    $users = $assigned->users()->get();
 
 
 
-    return $assigned;
+    return ['client' => $assigned,
+            'users'  => $users
+    ];
 
 });
 // Auth...

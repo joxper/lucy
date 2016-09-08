@@ -26,13 +26,13 @@
        
         <!-- BEGIN THEME GLOBAL STYLES -->
        {!! Html::style('bower_components/metronic/assets/global/css/components-md.min.css', ['id'=>'style_components']); !!}
-       {!! Html::style('bower_components/metronic/assets/global/css/plugins-md.min.css') !!}
+       {!! Html::style('bower_components/metronic/assets/global/css/plugins-md.css') !!}
         <!-- END THEME GLOBAL STYLES -->
         
         <!-- BEGIN THEME LAYOUT STYLES -->
        {!! Html::style('bower_components/metronic/assets/layouts/layout4/css/layout.min.css') !!}
        {!! Html::style('bower_components/metronic/assets/layouts/layout4/css/themes/default.min.css', ['id'=>'style_color']); !!}
-       {!! Html::style('bower_components/metronic/assets/layouts/layout4/css/custom.min.css') !!}
+       {!! Html::style('bower_components/metronic/assets/layouts/layout4/css/custom.css') !!}
         <!-- END THEME LAYOUT STYLES -->
 
 

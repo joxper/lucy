@@ -15,7 +15,7 @@ class Asset extends Model
      * {@inheritDoc}
      */
     protected $fillable = [
-        'category_id', 'admin_id', 'client_id', 'user_id', 'item_id', 'supplier_id', 'status_id', 'purchase_date', 'warranty_months', 'tag', 'name', 'serial', 'notes',
+        'name', 'category_id', 'client_id', 'user_id', 'admin_id', 'supplier_id', 'label_id', 'purchase_date', 'warranty_months', 'tag', 'serial', 'notes',
     ];
 
     /**
@@ -28,24 +28,9 @@ class Asset extends Model
         return $this->belongsTo(AssetCategory::class, 'category_id');
     }
 
-    public function admin()
-    {
-        return $this->belongsTo(Client::class, 'admin_id');
-    }
-
     public function client()
     {
         return $this->belongsTo(Client::class, 'client_id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function item()
-    {
-        return $this->belongsTo(Item::class, 'item_id');
     }
 
     public function supplier()
@@ -53,8 +38,8 @@ class Asset extends Model
         return $this->belongsTo(Supplier::class, 'supplier_id');
     }
 
-    public function status()
+    public function label()
     {
-        return $this->belongsTo(Label::class, 'status_id');
+        return $this->belongsTo(Label::class, 'label_id');
     }
 }

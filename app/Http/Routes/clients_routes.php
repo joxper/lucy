@@ -18,4 +18,5 @@ LucyRoute::get('clients/{id}', 'Modules\ClientController@show', 'clients.view');
 LucyRoute::delete('clients/{id}', 'Modules\ClientController@destroy', 'clients.delete');
 LucyRoute::post('clients/{id}/attach', 'Modules\ClientController@attachUser', 'clients.attachUser');
 LucyRoute::delete('clients/{client}/detach/{id}', 'Modules\ClientController@detachUser', 'clients.delete');
-LucyRoute::get('clients/{id}/assets', 'Modules\ClientController@datatablesAssets', 'clients.view');
+LucyRoute::get('clients/{id}/assets', 'Modules\ClientController@assetsTableService', 'clients.view');
+LucyRoute::get('clients/{id}/users', 'Modules\ClientController@usersTableService', 'clients.view');

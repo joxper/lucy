@@ -24,17 +24,16 @@ class AssetRequest extends Request
     public function rules()
     {
         return [
+            'name' => 'required',
             'category_id' => 'required',
-            'admin_id' => 'required',
             'client_id' => 'required',
             'user_id' => 'required',
-            'model_id' => 'required',
+            'admin_id' => 'required',
             'supplier_id' => 'required',
-            'status_id' => 'required',
+            'label_id' => 'required',
             'purchase_date' => 'required',
             'warranty_months' => 'required',
             'tag' => 'required',
-            'name' => 'required',
             'serial' => 'required',
             'notes' => 'required',
         ];

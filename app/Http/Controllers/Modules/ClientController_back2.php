@@ -6,8 +6,8 @@ use DB;
 use App\Lucy\Controller;
 use App\Models\Modules\Client as Model;
 use App\Http\Queries\Queries;
-use App\DataTables\AssetsDataTable;
 use App\DataTables\UsersDataTable;
+use App\DataTables\AssetsDataTable;
 use App\Http\Requests\Modules\ClientRequest as Request;
 
 class ClientController extends Controller
@@ -73,7 +73,7 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(AssetsDataTable $dataTable, $id)
+    public function show($id)
     {
         $client             =           $this->model->findOrFail($id);
 
@@ -97,11 +97,7 @@ class ClientController extends Controller
 
         $categories =                   DB::table('asset_categories')->get();
 
-        $tabs               =           ["assets","licenses","projects","issues","tickets","credentials","users","files"];
-        $tabsBlade          =           ["modules.clients.tabs.assets","modules.clients.tabs.licenses","modules.clients.tabs.projects","modules.clients.tabs.issues","modules.clients.tabs.tickets","modules.clients.tabs.credentials","modules.clients.tabs.users","modules.clients.tabs.files"];
-
-
-        return  $dataTable->forClient($id)->render('modules.clients.view', [
+        return view('modules.clients.view', [
                                         'client'            => $client,
                                         'assets'            => $assets,
                                         'licenses'          => $licenses,
@@ -113,8 +109,6 @@ class ClientController extends Controller
                                         'assignedAdmins'    => $assignedAdmins,
                                         'categories'        => $categories,
                                         'NotAssignedAdmins' => $NotAssignedAdmins,
-                                        'tabs'              => $tabs,
-                                        'tabsBlade'         => $tabsBlade,
                                         'createPermission'  => 'assets.create'
         ]);
     }
@@ -177,7 +171,7 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function datatables($model = null)
+    public function datatables()
     {
        return Controller::datatables()
                 ->addColumn('licenses', function ($data) {
@@ -233,27 +227,20 @@ class ClientController extends Controller
         return back_with_message(trans('lucy.message.success-delete'), 'success');
     }
 
-
-    public function assetsTableService(AssetsDataTable $dataTable, $cli)
-    {
-        return $dataTable->forClient($cli)
-                         ->render('modules.client.datatables', ["client_id" => $cli]);
-    }
-
-    public function usersTableService(UsersDataTable $dataTable, $cli)
-    {
-        return $dataTable->forClient($cli)
-            ->render('modules.client.datatables', ["client_id" => $cli]);
-    }
-
     public function assetsTables($id)
     {
-
-        return Controller::datatables($this->model->assetsTables($id))
-            ->editColumn('label.name', function ($data) {
-                $badge = '<span class="badge badge-info badge-roundless">'.$data->label->name.'</span>';
-                return $badge;
-            })
-            ->make(true);
+        return datatables($this->model->assetsTables($id))->make(true);
     }
+
+    public function userTable(UsersDataTable $dataTable)
+    {
+        return $dataTable->render('modules.test.datatables');
+    }
+
+    public function testTable(AssetsDataTable $dataTable, $cli)
+    {
+        return $dataTable->forClient($cli)
+                         ->render('modules.test.datatables', ["client_id" => $cli]);
+    }
+
 }

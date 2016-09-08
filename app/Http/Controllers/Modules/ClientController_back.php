@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Modules;
+use App\Models\Modules\Client;
 use Sentinel;
 use DB;
 use App\Lucy\Controller;
 use App\Models\Modules\Client as Model;
-use App\Http\Queries\Queries;
-use App\DataTables\AssetsDataTable;
-use App\DataTables\UsersDataTable;
+use App\Models\Modules\ClientsAdmin as AdminModel;
 use App\Http\Requests\Modules\ClientRequest as Request;
 
 class ClientController extends Controller
@@ -73,35 +72,56 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(AssetsDataTable $dataTable, $id)
+    public function show($id)
     {
-        $client             =           $this->model->findOrFail($id);
+        $client =           $this->prepareShow($id);
+        $assets =           DB::table('assets')
+                                ->where('client_id', $id)
+                                ->get();
+        $licenses =         DB::table('licenses')
+                                ->where('client_id', $id)
+                                ->get();
+        $projects =         DB::table('projects')
+                                ->where('client_id', $id)
+                                ->get();
+        $issues =           DB::table('issues')
+                                ->where('client_id', $id)
+                                ->get();
+        $tickets =          DB::table('tickets')
+                                ->where('client_id', $id)
+                                ->orderBy('id', 'desc')
+                                ->get();
+        $credentials =      DB::table('credentials')
+                                ->where('client_id', $id)
+                                ->get();
+        $assigned =         Model::findOrFail($id)->users();
 
-        $assets             =           (new Queries)->get('assets','client_id', $id);
-        $licenses           =           (new Queries)->get('licenses','client_id', $id);
-        $projects           =           (new Queries)->get('projects','client_id', $id);
-        $issues             =           (new Queries)->get('issues','client_id', $id);
-        $tickets            =           (new Queries)->get('tickets','client_id', $id);
-        $credentials        =           (new Queries)->get('credentials','client_id', $id);
+        $assignedList  =    $assigned
+                                ->lists('user_id');
+        $users =            Sentinel::findRoleById(2)
+                                ->users()
+                                ->whereNotIn('id', $assignedList)
+                                ->with('roles')
+                                ->get();
+        $usersList =        ['' => ''];
+        $usersList =        $usersList + $users->lists('first_name','id')->all();
+        $admins =           ['' => ''];
+        $admins =           $admins + Sentinel::findRoleById(1)
+                                ->users()
+                                ->whereNotIn('id', $assignedList)
+                                ->with('roles')
+                                ->lists('first_name','id')->all();
 
-        $clientUsers        =           $client->users()->with('roles')->get();
+        $assignedAdmins =   Sentinel::findRoleById(1)
+                                ->users()
+                                ->whereIn('id', $assignedList)
+                                ->with('roles')
+                                ->get();
 
-        $assignedList       =           $clientUsers->pluck('id')->all();
+        $categories =       DB::table('asset_categories')
+                                ->get();
 
-        $NotAssignedAdmins  =           ['' => ''] +
-                                        (new Queries)->getUsers('1',$assignedList, false)
-                                            ->lists('first_name','id')->all();
-
-        $assignedAdmins     =           (new Queries)->getUsers('1',$assignedList, true);
-
-
-        $categories =                   DB::table('asset_categories')->get();
-
-        $tabs               =           ["assets","licenses","projects","issues","tickets","credentials","users","files"];
-        $tabsBlade          =           ["modules.clients.tabs.assets","modules.clients.tabs.licenses","modules.clients.tabs.projects","modules.clients.tabs.issues","modules.clients.tabs.tickets","modules.clients.tabs.credentials","modules.clients.tabs.users","modules.clients.tabs.files"];
-
-
-        return  $dataTable->forClient($id)->render('modules.clients.view', [
+        return view('modules.clients.view', [
                                         'client'            => $client,
                                         'assets'            => $assets,
                                         'licenses'          => $licenses,
@@ -109,12 +129,12 @@ class ClientController extends Controller
                                         'issues'            => $issues,
                                         'tickets'           => $tickets,
                                         'credentials'       => $credentials,
-                                        'clientUsers'       => $clientUsers,
+                                        'users'             => $users,
+                                        'admins'            => $admins,
                                         'assignedAdmins'    => $assignedAdmins,
                                         'categories'        => $categories,
-                                        'NotAssignedAdmins' => $NotAssignedAdmins,
-                                        'tabs'              => $tabs,
-                                        'tabsBlade'         => $tabsBlade,
+                                        'assignedList'      => $assignedList,
+                                        'usersList'         => $usersList,
                                         'createPermission'  => 'assets.create'
         ]);
     }
@@ -177,21 +197,27 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function datatables($model = null)
+    public function datatables()
     {
        return Controller::datatables()
                 ->addColumn('licenses', function ($data) {
-                    $count = (new Queries)->count('licenses','client_id', $data->id);
+                    $count = DB::table('licenses')
+                                        ->where('client_id', $data->id)
+                                        ->count();
                     $badge = '<span class="badge badge-danger">'.$count.'</span>';                    
                     return $badge;
                 })
                 ->addColumn('assets', function ($data) {
-                    $count = (new Queries)->count('assets','client_id', $data->id);
+                    $count = DB::table('assets')
+                                        ->where('client_id', $data->id)
+                                        ->count();
                     $badge = '<span class="badge badge-success">'.$count.'</span>';                    
                     return $badge;
                 })
                 ->addColumn('projects', function ($data) {
-                    $count = (new Queries)->count('projects','client_id', $data->id);
+                    $count = DB::table('projects')
+                                        ->where('client_id', $data->id)
+                                        ->count();
                     $badge = '<span class="badge purple">'.$count.'</span>';                    
                     return $badge;
                 })                                
@@ -232,28 +258,5 @@ class ClientController extends Controller
 
         return back_with_message(trans('lucy.message.success-delete'), 'success');
     }
-
-
-    public function assetsTableService(AssetsDataTable $dataTable, $cli)
-    {
-        return $dataTable->forClient($cli)
-                         ->render('modules.client.datatables', ["client_id" => $cli]);
-    }
-
-    public function usersTableService(UsersDataTable $dataTable, $cli)
-    {
-        return $dataTable->forClient($cli)
-            ->render('modules.client.datatables', ["client_id" => $cli]);
-    }
-
-    public function assetsTables($id)
-    {
-
-        return Controller::datatables($this->model->assetsTables($id))
-            ->editColumn('label.name', function ($data) {
-                $badge = '<span class="badge badge-info badge-roundless">'.$data->label->name.'</span>';
-                return $badge;
-            })
-            ->make(true);
-    }
 }
+

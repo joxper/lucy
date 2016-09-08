@@ -17,17 +17,16 @@
 @endsection
 
 @section('form')
+    {!! Form::group('text', 'name', 'Name', $data['name']) !!}
     {!! Form::group('select', 'category_id', 'Category Id', $data['category_id'], ['options' => DB::table('asset_categories')->orderBy('id')->lists('id', 'id')]) !!}
-    {!! Form::group('select', 'admin_id', 'Admin Id', $data['admin_id'], ['options' => DB::table('clients')->orderBy('id')->lists('id', 'id')]) !!}
     {!! Form::group('select', 'client_id', 'Client Id', $data['client_id'], ['options' => DB::table('clients')->orderBy('id')->lists('id', 'id')]) !!}
-    {!! Form::group('select', 'user_id', 'User Id', $data['user_id'], ['options' => DB::table('users')->orderBy('id')->lists('id', 'id')]) !!}
-    {!! Form::group('select', 'model_id', 'Model Id', $data['model_id'], ['options' => DB::table('models')->orderBy('id')->lists('id', 'id')]) !!}
+    {!! Form::group('number', 'user_id', 'User Id', $data['user_id']) !!}
+    {!! Form::group('number', 'admin_id', 'Admin Id', $data['admin_id']) !!}
     {!! Form::group('select', 'supplier_id', 'Supplier Id', $data['supplier_id'], ['options' => DB::table('suppliers')->orderBy('id')->lists('id', 'id')]) !!}
-    {!! Form::group('select', 'status_id', 'Status Id', $data['status_id'], ['options' => DB::table('labels')->orderBy('id')->lists('id', 'id')]) !!}
+    {!! Form::group('select', 'label_id', 'Label Id', $data['label_id'], ['options' => DB::table('labels')->orderBy('id')->lists('id', 'id')]) !!}
     {!! Form::group('text', 'purchase_date', 'Purchase Date', $data['purchase_date'], ['readonly' => true, 'class' => 'lucy-date']) !!}
     {!! Form::group('number', 'warranty_months', 'Warranty Months', $data['warranty_months']) !!}
     {!! Form::group('text', 'tag', 'Tag', $data['tag']) !!}
-    {!! Form::group('text', 'name', 'Name', $data['name']) !!}
     {!! Form::group('text', 'serial', 'Serial', $data['serial']) !!}
     {!! Form::group('textarea', 'notes', 'Notes', $data['notes']) !!}
 @endsection

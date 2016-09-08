@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models\Modules;
-use App\Models\Modules\ClientsAdmin as AdminModel;
 use App\Lucy\Model;
 
 class Client extends Model
@@ -41,9 +40,9 @@ class Client extends Model
         return $this->hasMany('App\Models\Modules\Asset');
     }
 
-    public function datatables()
+    public static function assetsTables($id)
     {
-        return static::select('*');
+        return static::find($id)->assets()->with('category', 'supplier', 'label')->get();
     }
 }
 

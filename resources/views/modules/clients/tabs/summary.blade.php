@@ -50,7 +50,7 @@
 		                <i class="widget-thumb-icon bg-blue fa fa-users"></i>
 		                <div class="widget-thumb-body">
 		                    <span class="widget-thumb-subtitle"></span>
-		                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="{{ count($users) }}">{{ count($users) }}</span>
+		                    <span class="widget-thumb-body-stat" data-counter="counterup" data-value="{{ count($clientUsers) }}">{{ count($clientUsers) }}</span>
 		                </div>
 		            </div>
 		        </div>
@@ -78,8 +78,8 @@
 							<i class=" icon-clock font-green"></i>
 							<span class="caption-subject font-green bold uppercase">Assigned Staff</span>
 							@access('clientsadmins.create')
-							@if (count($admins) > 1)
-								<button id="attach_btn" class="btn btn-circle btn-icon-only blue" data-id="{{$client['data']['id']}}">
+							@if (count($NotAssignedAdmins) > 1)
+								<button id="attach_btn" class="btn btn-circle btn-icon-only blue" data-id="{{$client['id']}}">
 									<i class="fa fa-plus"></i>
 								</button>
 							@endif
@@ -108,7 +108,7 @@
 											</div>
                                             @access('clientsadmins.create')
 											<div class="mt-action-buttons" data-form="detachForm">
-												{{ Form::open(['method' => 'DELETE', 'action' => ['Modules\ClientController@detachUser', $client['data']['id'], $admin['id']], 'id' => 'detach_modal']) }}
+												{{ Form::open(['method' => 'DELETE', 'action' => ['Modules\ClientController@detachUser', $client['id'], $admin['id']], 'id' => 'detach_modal']) }}
 												{{ Form::close() }}
 												<button id="detach_btn" class="btn btn-circle btn-icon-only green"><i class="fa fa-minus"></i></button>
 											</div>
