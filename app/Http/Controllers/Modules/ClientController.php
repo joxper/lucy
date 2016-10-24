@@ -6,8 +6,9 @@ use DB;
 use App\Lucy\Controller;
 use App\Models\Modules\Client as Model;
 use App\Http\Queries\Queries;
-use App\DataTables\AssetsDataTable;
-use App\DataTables\UsersDataTable;
+use App\DataTables\Client\AssetsDataTable;
+use App\DataTables\Client\UsersDataTable;
+use App\DataTables\Client\LicensesDataTable;
 use App\Http\Requests\Modules\ClientRequest as Request;
 
 class ClientController extends Controller
@@ -177,7 +178,7 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function datatables($model = null)
+    public function datatables()
     {
        return Controller::datatables()
                 ->addColumn('licenses', function ($data) {
@@ -237,13 +238,19 @@ class ClientController extends Controller
     public function assetsTableService(AssetsDataTable $dataTable, $cli)
     {
         return $dataTable->forClient($cli)
-                         ->render('modules.client.datatables', ["client_id" => $cli]);
+                         ->render('modules.test', ["client_id" => $cli]);
     }
 
     public function usersTableService(UsersDataTable $dataTable, $cli)
     {
         return $dataTable->forClient($cli)
-            ->render('modules.client.datatables', ["client_id" => $cli]);
+                         ->render('modules.client.datatables', ["client_id" => $cli]);
+    }
+
+    public function licenseTableService(LicensesDataTable $dataTable, $cli)
+    {
+        return $dataTable->forClient($cli)
+                         ->render('modules.client.datatables', ["client_id" => $cli]);
     }
 
     public function assetsTables($id)
@@ -251,7 +258,7 @@ class ClientController extends Controller
 
         return Controller::datatables($this->model->assetsTables($id))
             ->editColumn('label.name', function ($data) {
-                $badge = '<span class="badge badge-info badge-roundless">'.$data->label->name.'</span>';
+                $badge = '<span class="badge badge-roundless bg-'.$data->label->color.' bg-font-'.$data->label->color.'">'.$data->label->name.'</span>';
                 return $badge;
             })
             ->make(true);

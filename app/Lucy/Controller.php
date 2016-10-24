@@ -37,13 +37,11 @@ abstract class Controller extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function datatables($model = null)
+    public function datatables()
     {
         $permissions = $this->datatablesPermissions;
-        if (null === $model) {
-            $model = $this->model->datatables();
-        }
-        return datatables($model)
+
+        return datatables($this->model->datatables())
                 ->addColumn('action', function ($data) use ($permissions) {
                     $action = '';
 

@@ -1,4 +1,4 @@
-{!! Html::script('bower_components/metronic/assets/global/plugins/bootbox/battributesn.js') !!}
+{!! Html::script('assets/global/plugins/bootbox/battributesn.js') !!}
 
 {{ Form::open(['method' => 'POST', 'action' => ['Modules\ClientController@attachUser', 'id' => $client['data']['id']], 'id' => 'attach_form']) }}
 {!! Form::group('hidden', 'client_id', 'Client Id', 'client_id') !!}

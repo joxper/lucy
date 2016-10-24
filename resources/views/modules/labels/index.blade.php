@@ -19,13 +19,11 @@
 
 @section('table-th')
     <th class="center-align">Name</th>
-    <th class="center-align">Color</th>
 @endsection
 
 @section('ajax-datatables', action('Modules\LabelController@datatables'))
 
 @section('datatables-columns')
-    {data: 'name', name: 'name'},
-    {data: 'color', name: 'color'},
+    {data: 'name', name: 'name', class: 'center-align'},
     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false}
 @endsection

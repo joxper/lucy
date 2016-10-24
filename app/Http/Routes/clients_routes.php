@@ -20,3 +20,4 @@ LucyRoute::post('clients/{id}/attach', 'Modules\ClientController@attachUser', 'c
 LucyRoute::delete('clients/{client}/detach/{id}', 'Modules\ClientController@detachUser', 'clients.delete');
 LucyRoute::get('clients/{id}/assets', 'Modules\ClientController@assetsTableService', 'clients.view');
 LucyRoute::get('clients/{id}/users', 'Modules\ClientController@usersTableService', 'clients.view');
+LucyRoute::get('clients/{id}/licenses', 'Modules\ClientController@licenseTableService', 'clients.view');

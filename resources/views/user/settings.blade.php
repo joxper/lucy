@@ -3,7 +3,7 @@
 
 @section('page-styles')
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! Html::style('bower_components/metronic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') !!}
+    {!! Html::style('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') !!}
     <!-- END PAGE LEVEL PLUGINS -->
 @endsection
 
@@ -184,7 +184,7 @@
     {!! $passwordValidator->selector('#form-password') !!}
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! Html::script('bower_components/metronic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/jquery.sparkline.min.js') !!}
+    {!! Html::script('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') !!}
+    {!! Html::script('assets/global/plugins/jquery.sparkline.min.js') !!}
     <!-- END PAGE LEVEL PLUGINS -->
 @endsection

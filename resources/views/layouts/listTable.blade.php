@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    <table id="@yield(isset($tab) ? "table-id-$tab" : 'table-id')" class="table table-striped table-bordered table-hover table-checkable order-column" data-tables="true">
+    <table id="@yield(isset($tab) ? "table-id-$tab" : 'table-id')" class="table table-striped table-bordered table-hover table-checkable order-column dt-responsive" data-tables="true">
         <thead>
             <tr>
                 @yield(isset($tab) ? "table-th-$tab" : 'table-th')
@@ -91,7 +91,5 @@
             }
 
         }
-        @yield(isset($tab) ? "table-id-$tab" : 'table-id').buttons().container()
-                .appendTo( $('#buttons .col-md-6:eq(0)' ) );
     </script>
 @append

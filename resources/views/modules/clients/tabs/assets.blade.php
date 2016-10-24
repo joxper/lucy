@@ -20,9 +20,9 @@
 
         @section('datatables-columns-assets')
             {data: 'tag', name: 'tag'},
-            {data: 'name', name: 'name'},
+            {data: 'name', name: 'assets.name'},
             {data: 'serial', name: 'serial'},
-            {data: 'category.name', name: 'category'},
-            {data: 'label.name', name: 'label', class: 'center-align'},
+            {data: 'category.name', name: 'category.name'},
+            {data: 'label.name', name: 'label.name', class: 'center-align'},
             {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
         @endsection

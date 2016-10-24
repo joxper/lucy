@@ -15,7 +15,7 @@ class License extends Model
      * {@inheritDoc}
      */
     protected $fillable = [
-        'client_id', 'status_id', 'category_id', 'supplier_id', 'tag', 'name', 'serial', 'notes',
+        'client_id', 'label_id', 'category_id', 'supplier_id', 'tag', 'name', 'serial', 'notes',
     ];
 
     /**
@@ -28,9 +28,9 @@ class License extends Model
         return $this->belongsTo(Client::class, 'client_id');
     }
 
-    public function status()
+    public function label()
     {
-        return $this->belongsTo(Label::class, 'status_id');
+        return $this->belongsTo(Label::class, 'label_id');
     }
 
     public function category()

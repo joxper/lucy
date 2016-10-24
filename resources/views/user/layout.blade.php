@@ -7,7 +7,7 @@
 @section('header')
     @yield('page-styles')
     <!-- BEGIN PAGE LEVEL STYLES -->
-    {!! Html::style('bower_components/metronic/assets/pages/css/profile.min.css') !!}
+    {!! Html::style('assets/pages/css/profile.min.css') !!}
     <!-- END PAGE LEVEL STYLES -->
 @endsection
 
@@ -114,7 +114,7 @@
     @yield('page-scripts')
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    {!! Html::script('bower_components/metronic/assets/pages/scripts/profile.min.js') !!}
+    {!! Html::script('assets/pages/scripts/profile.min.js') !!}
     <!-- END PAGE LEVEL SCRIPTS -->
 
 @endsection

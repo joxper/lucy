@@ -15,7 +15,7 @@
 
 @section('form')
     {!! Form::group('static', 'client_id', 'Client Id', $data['client_id']) !!}
-    {!! Form::group('static', 'status_id', 'Status Id', $data['status_id']) !!}
+    {!! Form::group('static', 'label_id', 'Label Id', $data['label_id']) !!}
     {!! Form::group('static', 'category_id', 'Category Id', $data['category_id']) !!}
     {!! Form::group('static', 'supplier_id', 'Supplier Id', $data['supplier_id']) !!}
     {!! Form::group('static', 'tag', 'Tag', $data['tag']) !!}

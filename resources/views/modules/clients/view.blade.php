@@ -5,12 +5,12 @@
 @section('page-header', '<div class="page-title"><h1>'.$client['name'].'<small>'.trans('lucy.word.view').'</small> </h1></div>')
 
 @section('header')
-{!! Html::style('bower_components/metronic/assets/global/plugins/morris/morris.css') !!}
+{!! Html::style('assets/global/plugins/morris/morris.css') !!}
 
 <!-- BEGIN PAGE LEVEL PLUGINS -->
-{!! Html::style('bower_components/metronic/assets/global/plugins/datatables/datatables.min.css') !!}
-{!! Html::style('bower_components/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!}
-{!! Html::style('bower_components/metronic/assets/layouts/layout4/css/custom.css') !!}
+{!! Html::style('assets/global/plugins/datatables/datatables.min.css') !!}
+{!! Html::style('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!}
+{!! Html::style('assets/layouts/layout4/css/custom.css') !!}
 <!-- END PAGE LEVEL PLUGINS -->
 
 <style>
@@ -77,17 +77,17 @@
     {!! Form::group('select', 'user_id', 'Staff', 'Staff', ['options' => $NotAssignedAdmins]) !!}
 @endsection
 @section('scripts')
-    {!! Html::script('bower_components/metronic/assets/global/plugins/counterup/jquery.waypoints.min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/counterup/jquery.counterup.min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/morris/morris.min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/morris/raphael-min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/pages/scripts/charts-morris.js') !!}
+    {!! Html::script('assets/global/plugins/counterup/jquery.waypoints.min.js') !!}
+    {!! Html::script('assets/global/plugins/counterup/jquery.counterup.min.js') !!}
+    {!! Html::script('assets/global/plugins/morris/morris.min.js') !!}
+    {!! Html::script('assets/global/plugins/morris/raphael-min.js') !!}
+    {!! Html::script('assets/pages/scripts/charts-morris.js') !!}
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! Html::script('bower_components/metronic/assets/global/scripts/datatable.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/datatables/datatables.min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}
-    {!! Html::script('bower_components/metronic/assets/pages/scripts/table-datatables-managed.min.js') !!}
+    {!! Html::script('assets/global/scripts/datatable.js') !!}
+    {!! Html::script('assets/global/plugins/datatables/datatables.min.js') !!}
+    {!! Html::script('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}
+    {!! Html::script('assets/pages/scripts/table-datatables-managed.min.js') !!}
     <!-- END PAGE LEVEL PLUGINS -->
     <script src="/vendor/datatables/buttons.server-side.js"></script>
 

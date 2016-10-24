@@ -1,0 +1,189 @@
+/* here you can put your own css to customize and override the theme */
+ .center-align {
+   text-align: center!important;
+ }
+
+
+div.dt-button-collection button.dt-button:active:not(.disabled), div.dt-button-collection button.dt-button.active:not(.disabled),
+div.dt-button-collection div.dt-button:active:not(.disabled),
+div.dt-button-collection div.dt-button.active:not(.disabled),
+div.dt-button-collection a.dt-button:active:not(.disabled),
+div.dt-button-collection a.dt-button.active:not(.disabled) {
+    text-decoration: none;
+    display: block;
+    background-image: none;
+    background-color: #f6f6f6;
+    color: #555;
+    filter: none; }
+
+  div.dt-button-collection button.dt-button,
+  div.dt-button-collection div.dt-button,
+  div.dt-button-collection a.dt-button {
+    padding: 8px 16px;
+    color: #6f6f6f;
+    text-decoration: none;
+    display: block;
+    clear: both;
+    font-weight: 300;
+    line-height: 18px;
+    white-space: nowrap;  }    
+.dt-buttons > li {
+    display: inline;
+    margin-right: 5px;
+}/* here you can put your own css to customize and override the theme */
+
+
+.dataTables_wrapper .dataTables_processing{
+	position: absolute!important;
+	top: 50%!important;
+	right: 50%!important;
+	bottom: 0!important;
+	margin-left: 50%!important;
+	margin-top: 15px!important;
+	background:none;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	  transform: translate(-50%, -50%);
+}
+
+.dataTables_processing > div {
+ content: "";
+  width: 10px;
+  height: 10px;
+  background: #2196F3;
+  border-radius: 100%;
+  position: absolute;
+  -webkit-animation: animate 2s linear infinite;
+          animation: animate 2s linear infinite;
+}
+.dataTables_processing > div:nth-of-type(1) {
+  -webkit-animation-delay: -.4s;
+          animation-delay: -.4s;
+}
+.dataTables_processing > div:nth-of-type(2) {
+  -webkit-animation-delay: -.8s;
+          animation-delay: -.8s;
+}
+.dataTables_processing > div:nth-of-type(3) {
+  -webkit-animation-delay: -1.2s;
+          animation-delay: -1.2s;
+}
+.dataTables_processing > div:nth-of-type(4) {
+  -webkit-animation-delay: -1.6s;
+          animation-delay: -1.6s;
+}
+
+@-webkit-keyframes animate {
+  0% {
+    left: 100px;
+    top: 0;
+  }
+  80% {
+    left: 0;
+    top: 0;
+  }
+  85% {
+    left: 0;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+  }
+  90% {
+    width: 40px;
+    height: 15px;
+  }
+  95% {
+    left: 100px;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+  }
+  100% {
+    left: 100px;
+    top: 0;
+  }
+}
+
+@keyframes animate {
+  0% {
+    left: 100px;
+    top: 0;
+  }
+  80% {
+    left: 0;
+    top: 0;
+  }
+  85% {
+    left: 0;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+  }
+  90% {
+    width: 20px;
+    height: 10px;
+  }
+  95% {
+    left: 100px;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+  }
+  100% {
+    left: 100px;
+    top: 0;
+  }
+}
+.table-checkable tr > th:first-child,
+.table-checkable tr > td:first-child {
+  text-align: left;
+}
+table.dataTable.no-footer {
+    border-bottom-color: #e7ecf1;
+}    
+.swatch-clickable:hover {
+  border: 2px solid #ACB5C3;
+  cursor: pointer;
+}
+  @media only screen
+  and (min-device-width : 320px)
+  and (max-device-width : 480px) {
+  .swatch {
+    width:20px;
+    height:20px;
+    border-radius:1px;
+    border: 1px solid #F3F5F9;
+    
+  }
+  .swatch-table > tbody > tr > td {
+    padding: 1px;  
+  }
+}
+
+  /* iPads (portrait and landscape) ----------- */
+  @media only screen 
+  and (min-device-width: 480px) 
+  and (max-device-width: 1024px) {
+    .swatch {
+      width:30px;
+      height:30px;
+      border-radius:2px;
+      border: 1px solid #F3F5F9;
+    }
+    .swatch-table > tbody > tr > td {
+      padding: 1px;  
+    }
+  }
+
+  @media only screen 
+  and (min-device-width: 1024px)  {
+    .swatch {
+      width:70px;
+      height:70px;
+      border-radius:5px;
+      border: 1px solid #F3F5F9;
+    }
+    .swatch-table > tbody > tr > td {
+      padding: 1px;  
+    }
+  }  

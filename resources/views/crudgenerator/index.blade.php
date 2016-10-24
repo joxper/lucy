@@ -4,8 +4,8 @@
 
 @section('header')
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! Html::style('bower_components/metronic/assets/global/plugins/datatables/datatables.min.css') !!}
-    {!! Html::style('bower_components/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!}
+    {!! Html::style('assets/global/plugins/datatables/datatables.min.css') !!}
+    {!! Html::style('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!}
     <!-- END PAGE LEVEL PLUGINS -->
 @endsection
  
@@ -78,10 +78,10 @@
 @section('scripts')
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! Html::script('bower_components/metronic/assets/global/scripts/datatable.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/datatables/datatables.min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}
-    {!! Html::script('bower_components/metronic/assets/pages/scripts/table-datatables-managed.min.js') !!}
+    {!! Html::script('assets/global/scripts/datatable.js') !!}
+    {!! Html::script('assets/global/plugins/datatables/datatables.min.js') !!}
+    {!! Html::script('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}
+    {!! Html::script('assets/pages/scripts/table-datatables-managed.min.js') !!}
     <!-- END PAGE LEVEL PLUGINS -->
 
 

@@ -4,7 +4,7 @@
 
 @section('header')
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! Html::style('bower_components/metronic/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') !!}
+    {!! Html::style('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') !!}
     <!-- END PAGE LEVEL PLUGINS -->
 
 @endsection
@@ -131,8 +131,8 @@
         });
     </script>
 
-    {!! Html::script('bower_components/metronic/assets/global/plugins/moment.min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') !!}
+    {!! Html::script('assets/global/plugins/moment.min.js') !!}
+    {!! Html::script('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') !!}
 
     <script src="{!! url('vendor/jsvalidation/js/jsvalidation.js')!!}"></script>
     {!! JsValidator::formRequest('App\Http\Requests\Lucy\LogRequest') !!}

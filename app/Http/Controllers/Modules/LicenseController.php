@@ -43,7 +43,7 @@ class LicenseController extends Controller
     {
         return $this->createEdit([
             'client_id' => null,
-            'status_id' => null,
+            'label_id' => null,
             'category_id' => null,
             'supplier_id' => null,
             'tag' => null,

@@ -25,7 +25,7 @@ class LicenseRequest extends Request
     {
         return [
             'client_id' => 'required',
-            'status_id' => 'required',
+            'label_id' => 'required',
             'category_id' => 'required',
             'supplier_id' => 'required',
             'tag' => 'required',

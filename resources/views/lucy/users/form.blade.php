@@ -5,7 +5,7 @@
 @section('header')
 
         <!-- BEGIN PAGE LEVEL PLUGINS -->
-        {!! Html::style('bower_components/metronic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') !!}
+        {!! Html::style('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') !!}
         <!-- END PAGE LEVEL PLUGINS -->
 
 @endsection
@@ -75,7 +75,7 @@
     <script src="{!! url('vendor/jsvalidation/js/jsvalidation.js')!!}"></script>
     {!! JsValidator::formRequest('App\Http\Requests\Lucy\UserRequest') !!}
 
-    {!! Html::script('bower_components/metronic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') !!}
+    {!! Html::script('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js') !!}
 
     <script>
         $(document).ready(function () {

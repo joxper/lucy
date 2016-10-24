@@ -1,4 +1,4 @@
-{!! Html::script('bower_components/metronic/assets/global/plugins/bootbox/bootbox.min.js') !!}
+{!! Html::script('assets/global/plugins/bootbox/bootbox.min.js') !!}
 <script>
 
         $('button#detach_btn').on('click', function(){

@@ -17,22 +17,22 @@
 
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css"/>
 
-       {!! Html::style('bower_components/metronic/assets/global/plugins/font-awesome/css/font-awesome.min.css') !!}
-       {!! Html::style('bower_components/metronic/assets/global/plugins/simple-line-icons/simple-line-icons.min.css') !!}
-       {!! Html::style('bower_components/metronic/assets/global/plugins/bootstrap/css/bootstrap.min.css') !!}
-       {!! Html::style('bower_components/metronic/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') !!}
+       {!! Html::style('assets/global/plugins/font-awesome/css/font-awesome.min.css') !!}
+       {!! Html::style('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') !!}
+       {!! Html::style('assets/global/plugins/bootstrap/css/bootstrap.min.css') !!}
+       {!! Html::style('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') !!}
         <!-- END GLOBAL MANDATORY STYLES -->
-        
-       
+
+
         <!-- BEGIN THEME GLOBAL STYLES -->
-       {!! Html::style('bower_components/metronic/assets/global/css/components-md.min.css', ['id'=>'style_components']); !!}
-       {!! Html::style('bower_components/metronic/assets/global/css/plugins-md.css') !!}
+       {!! Html::style('assets/global/css/components-md.min.css', ['id'=>'style_components']); !!}
+       {!! Html::style('assets/global/css/plugins-md.css') !!}
         <!-- END THEME GLOBAL STYLES -->
-        
+
         <!-- BEGIN THEME LAYOUT STYLES -->
-       {!! Html::style('bower_components/metronic/assets/layouts/layout4/css/layout.min.css') !!}
-       {!! Html::style('bower_components/metronic/assets/layouts/layout4/css/themes/default.min.css', ['id'=>'style_color']); !!}
-       {!! Html::style('bower_components/metronic/assets/layouts/layout4/css/custom.css') !!}
+       {!! Html::style('assets/layouts/layout4/css/layout.min.css') !!}
+       {!! Html::style('assets/layouts/layout4/css/themes/default.min.css', ['id'=>'style_color']); !!}
+       {!! Html::style('assets/layouts/layout4/css/custom.css') !!}
         <!-- END THEME LAYOUT STYLES -->
 
 
@@ -54,7 +54,7 @@
         <div class="page-header navbar navbar-fixed-top">
             <!-- BEGIN HEADER INNER -->
             <div class="page-header-inner ">
-            
+
                 <!-- BEGIN LOGO -->
                  <div class="page-logo">
                     <a href="{!! action('DashboardController@index') !!}" class="logo" title="{{ lucy_config('APP_NAME') }}">
@@ -63,7 +63,7 @@
                     </a>
                     <div class="menu-toggler sidebar-toggler"></div>
                 </div>
-                <!-- END LOGO -->               
+                <!-- END LOGO -->
 
 
                 <!-- BEGIN RESPONSIVE MENU TOGGLER -->
@@ -246,7 +246,7 @@
                                                     <li>
                                                         <a href="#">
                                                             <span class="photo">
-                                                                <img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                                <img src="/assets/layouts/layout4/img/avatar2.jpg" class="img-circle" alt=""> </span>
                                                             <span class="subject">
                                                                 <span class="from"> Lisa Wong </span>
                                                                 <span class="time">Just Now </span>
@@ -257,7 +257,7 @@
                                                     <li>
                                                         <a href="#">
                                                             <span class="photo">
-                                                                <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                                <img src="/assets/layouts/layout4/img/avatar3.jpg" class="img-circle" alt=""> </span>
                                                             <span class="subject">
                                                                 <span class="from"> Richard Doe </span>
                                                                 <span class="time">16 mins </span>
@@ -268,7 +268,7 @@
                                                     <li>
                                                         <a href="#">
                                                             <span class="photo">
-                                                                <img src="../assets/layouts/layout3/img/avatar1.jpg" class="img-circle" alt=""> </span>
+                                                                <img src="/assets/layouts/layout4/img/avatar1.jpg" class="img-circle" alt=""> </span>
                                                             <span class="subject">
                                                                 <span class="from"> Bob Nilson </span>
                                                                 <span class="time">2 hrs </span>
@@ -279,7 +279,7 @@
                                                     <li>
                                                         <a href="#">
                                                             <span class="photo">
-                                                                <img src="../assets/layouts/layout3/img/avatar2.jpg" class="img-circle" alt=""> </span>
+                                                                <img src="/assets/layouts/layout4/img/avatar2.jpg" class="img-circle" alt=""> </span>
                                                             <span class="subject">
                                                                 <span class="from"> Lisa Wong </span>
                                                                 <span class="time">40 mins </span>
@@ -290,7 +290,7 @@
                                                     <li>
                                                         <a href="#">
                                                             <span class="photo">
-                                                                <img src="../assets/layouts/layout3/img/avatar3.jpg" class="img-circle" alt=""> </span>
+                                                                <img src="/assets/layouts/layout4/img/avatar3.jpg" class="img-circle" alt=""> </span>
                                                             <span class="subject">
                                                                 <span class="from"> Richard Doe </span>
                                                                 <span class="time">46 mins </span>
@@ -460,9 +460,9 @@
                                         <i class="icon-logout"></i>
                                     </li>
                                     <!-- END QUICK SIDEBAR TOGGLER -->
-                                </ul>                            
+                                </ul>
                             </div>
-                        </div>    
+                        </div>
                 <!-- END TOP NAVIGATION MENU -->
             </div>
             <!-- END HEADER INNER -->
@@ -474,7 +474,7 @@
         <!-- BEGIN CONTAINER -->
         <div class="page-container">
             <!-- BEGIN SIDE MENU -->
-            @include('layouts.menu')    
+            @include('layouts.menu')
             <!-- END SIDE MENU -->
              <!-- BEGIN CONTENT -->
             <div class="page-content-wrapper">
@@ -505,7 +505,7 @@
             <!-- END CONTENT -->
             <!-- BEGIN QUICK SIDEBAR -->
             @include('layouts.quickbar')
-            <!-- END QUICK SIDEBAR -->            
+            <!-- END QUICK SIDEBAR -->
         </div>
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
@@ -526,25 +526,25 @@
 
 
 <!-- BEGIN CORE PLUGINS -->
-{!! Html::script('bower_components/metronic/assets/global/plugins/jquery.min.js') !!}
-{!! Html::script('bower_components/metronic/assets/global/plugins/bootstrap/js/bootstrap.min.js') !!}
-{!! Html::script('bower_components/metronic/assets/global/plugins/js.cookie.min.js') !!}
-{!! Html::script('bower_components/metronic/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') !!}
-{!! Html::script('bower_components/metronic/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') !!}
-{!! Html::script('bower_components/metronic/assets/global/plugins/jquery.blockui.min.js') !!}
-{!! Html::script('bower_components/metronic/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') !!}
+{!! Html::script('assets/global/plugins/jquery.min.js') !!}
+{!! Html::script('assets/global/plugins/bootstrap/js/bootstrap.min.js') !!}
+{!! Html::script('assets/global/plugins/js.cookie.min.js') !!}
+{!! Html::script('assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js') !!}
+{!! Html::script('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') !!}
+{!! Html::script('assets/global/plugins/jquery.blockui.min.js') !!}
+{!! Html::script('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') !!}
 <!-- END CORE PLUGINS -->
 
 
 
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
-{!! Html::script('bower_components/metronic/assets/global/scripts/app.min.js') !!}
+{!! Html::script('assets/global/scripts/app.min.js') !!}
 <!-- END THEME GLOBAL SCRIPTS -->
 
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
-{!! Html::script('bower_components/metronic/assets/layouts/layout4/scripts/layout.min.js') !!}
-{!! Html::script('bower_components/metronic/assets/layouts/layout4/scripts/demo.min.js') !!}
-{!! Html::script('bower_components/metronic/assets/layouts/global/scripts/quick-sidebar.min.js') !!}
+{!! Html::script('assets/layouts/layout4/scripts/layout.min.js') !!}
+{!! Html::script('assets/layouts/layout4/scripts/demo.min.js') !!}
+{!! Html::script('assets/layouts/global/scripts/quick-sidebar.min.js') !!}
 <!-- END THEME LAYOUT SCRIPTS -->
     
         <script>

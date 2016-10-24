@@ -30,8 +30,8 @@
 @section('datatables-columns')
     {data: 'id', id: 'id'},
     {data: 'name', name: 'name'},
-    {data: 'licenses', name: 'licenses', class: 'center-align'},
-    {data: 'assets', name: 'assets', class: 'center-align'},
-    {data: 'projects', name: 'projects', class: 'center-align'},
+    {data: 'licenses', name: 'licenses', class: 'center-align', searchable: false, orderable: false},
+    {data: 'assets', name: 'assets', class: 'center-align', searchable: false, orderable: false},
+    {data: 'projects', name: 'projects', class: 'center-align', searchable: false, orderable: false},
     {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
 @endsection

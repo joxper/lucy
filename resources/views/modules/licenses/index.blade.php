@@ -19,7 +19,7 @@
 
 @section('table-th')
     <th class="center-align">Client Id</th>
-    <th class="center-align">Status Id</th>
+    <th class="center-align">Label Id</th>
     <th class="center-align">Category Id</th>
     <th class="center-align">Supplier Id</th>
     <th class="center-align">Tag</th>
@@ -32,7 +32,7 @@
 
 @section('datatables-columns')
     {data: 'client_id', name: 'client_id'},
-    {data: 'status_id', name: 'status_id'},
+    {data: 'label_id', name: 'label_id'},
     {data: 'category_id', name: 'category_id'},
     {data: 'supplier_id', name: 'supplier_id'},
     {data: 'tag', name: 'tag'},

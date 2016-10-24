@@ -125,4 +125,20 @@ class LabelController extends Controller
     {
         return view('modules.labels.form', $this->prepareCreateEdit($dataToBind, $id));
     }
+
+    /**
+     * Datatables resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function datatables()
+    {
+        return Controller::datatables()
+            ->editColumn('name', function ($data) {
+                $badge = '<span class="badge badge-roundless bg-'.$data->color.' bg-font-'.$data->color.'">'.$data->name.'</span>';
+                return $badge;
+            })
+            ->make(true);
+    }
+
 }

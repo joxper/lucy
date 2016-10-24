@@ -2,7 +2,7 @@
 
     @section('tabName-licenses', 'licenses')
 
-    @section('table-name-licenses', 'Assets List')
+    @section('table-name-licenses', 'Licenses List')
 
     @section('add-link-licenses', action('Modules\LicenseController@create'))
 
@@ -10,17 +10,19 @@
 
     @section('table-th-licenses')
         <th class="center-align">Id</th>
-        <th class="center-align">Username</th>
-        <th class="center-align">FirstName</th>
-        <th class="center-align">LastName</th>
+        <th class="center-align">Tag</th>
+        <th class="center-align">Name</th>
+        <th class="center-align">Category</th>
+        <th class="center-align">Status</th>
     @endsection
 
-    @section('ajax-datatables-licenses', action('Modules\ClientController@usersTableService', ['id' => $client['id']]))
+    @section('ajax-datatables-licenses', action('Modules\ClientController@licenseTableService', ['id' => $client['id']]))
 
     @section('datatables-columns-licenses')
         {data: 'id', name: 'id'},
-        {data: 'username', name: 'username'},
-        {data: 'first_name', name: 'first_name'},
-        {data: 'last_name', name: 'last_name'},
+        {data: 'tag', name: 'tag'},
+        {data: 'name', name: 'name'},
+        {data: 'category.name', name: 'category.name'},
+        {data: 'label.name', name: 'label.name', class: 'center-align'},
         {data: 'action', name: 'action', class: 'center-align', searchable: false, orderable: false},
     @endsection

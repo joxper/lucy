@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('header')
-    {!! Html::style('bower_components/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!}
-    {!! Html::style('bower_components/metronic/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') !!}
-    {!! Html::style('bower_components/metronic/assets/global/plugins/datatables/plugins/buttons/css/buttons.dataTables.css') !!}
+    {!! Html::style('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') !!}
+    {!! Html::style('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') !!}
+    {!! Html::style('assets/global/plugins/datatables/plugins/buttons/css/buttons.dataTables.css') !!}
     <style>
         .center-align {
             text-align: center;
@@ -36,13 +36,13 @@
 @section('scripts')
 
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! Html::script('bower_components/metronic/assets/global/scripts/datatable.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/datatables/datatables.min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}
-    {!! Html::script('bower_components/metronic/assets/pages/scripts/table-datatables-managed.min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') !!}
+    {!! Html::script('assets/global/scripts/datatable.js') !!}
+    {!! Html::script('assets/global/plugins/datatables/datatables.min.js') !!}
+    {!! Html::script('assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js') !!}
+    {!! Html::script('assets/pages/scripts/table-datatables-managed.min.js') !!}
+    {!! Html::script('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') !!}
     <!-- END PAGE LEVEL PLUGINS -->
-    {!! Html::script('bower_components/metronic/assets/pages/scripts/table-datatables-buttons.min.js') !!}
+    {!! Html::script('assets/pages/scripts/table-datatables-buttons.min.js') !!}
 <script src="/vendor/datatables/buttons.server-side.js"></script>
 
 {!! $dataTable->scripts() !!}

@@ -3,7 +3,7 @@
 
 @section('page-styles')
     <!-- BEGIN PAGE LEVEL PLUGINS -->
-    {!! Html::style('bower_components/metronic/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') !!}
+    {!! Html::style('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') !!}
     <!-- END PAGE LEVEL PLUGINS -->
 @endsection
 
@@ -1308,8 +1308,8 @@
 @section('page-scripts')
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-    {!! Html::script('bower_components/metronic/assets/global/plugins/gmaps/gmaps.min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/global/plugins/jquery.sparkline.min.js') !!}
-    {!! Html::script('bower_components/metronic/assets/pages/scripts/timeline.min.js') !!}    
+    {!! Html::script('assets/global/plugins/gmaps/gmaps.min.js') !!}
+    {!! Html::script('assets/global/plugins/jquery.sparkline.min.js') !!}
+    {!! Html::script('assets/pages/scripts/timeline.min.js') !!}
     <!-- END PAGE LEVEL PLUGINS -->
 @endsection

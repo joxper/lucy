@@ -14,7 +14,7 @@
 
 @section('form')
     {!! Form::group('select', 'client_id', 'Client Id', $data['client_id'], ['options' => DB::table('clients')->orderBy('id')->lists('id', 'id')]) !!}
-    {!! Form::group('select', 'status_id', 'Status Id', $data['status_id'], ['options' => DB::table('labels')->orderBy('id')->lists('id', 'id')]) !!}
+    {!! Form::group('select', 'label_id', 'Label Id', $data['label_id'], ['options' => DB::table('labels')->orderBy('id')->lists('id', 'id')]) !!}
     {!! Form::group('select', 'category_id', 'Category Id', $data['category_id'], ['options' => DB::table('license_categories')->orderBy('id')->lists('id', 'id')]) !!}
     {!! Form::group('select', 'supplier_id', 'Supplier Id', $data['supplier_id'], ['options' => DB::table('suppliers')->orderBy('id')->lists('id', 'id')]) !!}
     {!! Form::group('text', 'tag', 'Tag', $data['tag']) !!}
